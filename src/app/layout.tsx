@@ -11,11 +11,13 @@ export const metadata: Metadata = {
   title: "Flintstone Associates | Executive Recruitment",
   description:
     "Flintstone Associates is a specialist recruitment agency connecting exceptional talent with the businesses that need them most. Executive search, contract staffing, and talent advisory.",
+  metadataBase: new URL("https://flintstoneassociates.com"),
   openGraph: {
     title: "Flintstone Associates | Executive Recruitment",
     description:
       "Specialist recruitment agency connecting exceptional talent with the businesses that need them most.",
     type: "website",
+    url: "https://flintstoneassociates.com",
   },
 };
 
@@ -34,6 +36,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Flintstone Associates",
+              url: "https://flintstoneassociates.com",
               description:
                 "Specialist recruitment agency connecting exceptional talent with outstanding businesses.",
             }),
