@@ -16,7 +16,7 @@ export default function Contact() {
     const formData = new FormData(form);
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/contact@flintstoneassociates.com", {
+      const res = await fetch("https://formsubmit.co/ajax/2eae5572c240d81d992458afe79d6c80", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(Object.fromEntries(formData)),
