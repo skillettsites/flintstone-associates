@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, MapPin, Loader2 } from "lucide-react";
+import { Mail, MapPin, Loader2, CheckCircle } from "lucide-react";
 import BlurFade from "./BlurFade";
 import SectionHeading from "./SectionHeading";
 
@@ -25,7 +25,6 @@ export default function Contact() {
       if (res.ok) {
         setStatus("sent");
         form.reset();
-        setTimeout(() => setStatus("idle"), 4000);
       } else {
         setStatus("error");
         setTimeout(() => setStatus("idle"), 4000);
@@ -47,6 +46,17 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-12">
           <BlurFade delay={0.1}>
+            {status === "sent" ? (
+              <div className="flex flex-col items-center justify-center text-center py-16 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
+                  <CheckCircle className="w-8 h-8 text-accent" />
+                </div>
+                <h3 className="text-2xl font-semibold">Thanks for getting in touch</h3>
+                <p className="text-muted max-w-sm">
+                  Your message has been sent. We will get back to you as soon as possible.
+                </p>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <input type="hidden" name="_subject" value="New enquiry from flintstoneassociates.com" />
               <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} />
@@ -125,10 +135,10 @@ export default function Contact() {
                 {status === "sending" && <Loader2 className="w-4 h-4 inline mr-2 animate-spin" />}
                 {status === "idle" && "Send Message"}
                 {status === "sending" && "Sending..."}
-                {status === "sent" && "Message Sent!"}
                 {status === "error" && "Something went wrong. Try again."}
               </button>
             </form>
+            )}
           </BlurFade>
 
           <BlurFade delay={0.2}>
