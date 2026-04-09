@@ -13,7 +13,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-32 px-6">
+    <section className="py-20 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <SectionHeading
           label="01 / About Us"

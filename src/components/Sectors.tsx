@@ -52,7 +52,7 @@ const sectors = [
 
 export default function Sectors() {
   return (
-    <section id="sectors" className="py-20 md:py-32 px-6">
+    <section className="py-20 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <SectionHeading
           label="03 / Sectors"

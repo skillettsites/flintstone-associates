@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import Link from "next/link";
 import BlurFade from "./BlurFade";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background effects */}
       <div className="absolute inset-0 dot-pattern" />
 
       <div className="relative max-w-5xl mx-auto px-6 text-center pt-20">
@@ -39,18 +39,18 @@ export default function Hero() {
 
         <BlurFade delay={0.5}>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#services"
-              className="gradient-bg text-background font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-opacity active:scale-95 w-full sm:w-auto"
+            <Link
+              href="/services"
+              className="gradient-bg text-background font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-opacity active:scale-95 w-full sm:w-auto text-center"
             >
               Explore Our Services
-            </a>
-            <a
-              href="#contact"
-              className="border border-card-border text-foreground font-medium px-8 py-3 rounded-lg hover:border-accent/50 hover:text-accent transition-colors active:scale-95 w-full sm:w-auto"
+            </Link>
+            <Link
+              href="/contact"
+              className="border border-card-border text-foreground font-medium px-8 py-3 rounded-lg hover:border-accent/50 hover:text-accent transition-colors active:scale-95 w-full sm:w-auto text-center"
             >
               Get in Touch
-            </a>
+            </Link>
           </div>
         </BlurFade>
 
@@ -59,9 +59,9 @@ export default function Hero() {
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <a href="#about" className="inline-block text-muted hover:text-accent transition-colors">
+          <Link href="/about" className="inline-block text-muted hover:text-accent transition-colors">
             <ArrowDown size={24} />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
