@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f5;
+  --foreground: #1a1a1e;
+  --accent: #9a7b3c;
+  --accent-light: #b8923f;
+  --accent-secondary: #5a6a7a;
+  --card: #ffffff;
+  --card-border: #e8e4de;
+  --muted: #6b6760;
+  --muted-bg: #f2efe9;
+  --stone: #c4bfb5;
+}
+
+.dark {
+  --background: #0c0c0e;
+  --foreground: #f5f2ed;
+  --accent: #c9a96e;
+  --accent-light: #dbc08a;
+  --accent-secondary: #8a9aa5;
+  --card: #141416;
+  --card-border: #232328;
+  --muted: #9a968f;
+  --muted-bg: #111113;
+  --stone: #d4cfc7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --color-muted-bg: var(--muted-bg);
+  --color-stone: var(--stone);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, li, div, section, footer, nav {
+  cursor: default;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #c9a96e, #dbc08a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #c9a96e, #b8923f);
+}
+
+.glass {
+  background: rgba(12, 12, 14, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glow {
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.15);
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(201, 169, 110, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
