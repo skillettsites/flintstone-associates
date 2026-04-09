@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, ExternalLink, Loader2 } from "lucide-react";
+import { Mail, MapPin, Loader2 } from "lucide-react";
 import BlurFade from "./BlurFade";
 import SectionHeading from "./SectionHeading";
 
@@ -143,31 +143,11 @@ export default function Contact() {
                     <Mail className="w-5 h-5 text-accent shrink-0" />
                     <span>contact@flintstoneassociates.com</span>
                   </a>
-                  <a
-                    href="tel:+442012345678"
-                    className="flex items-center gap-3 text-muted hover:text-accent transition-colors"
-                  >
-                    <Phone className="w-5 h-5 text-accent shrink-0" />
-                    <span>+44 (0) 20 1234 5678</span>
-                  </a>
                   <div className="flex items-center gap-3 text-muted">
                     <MapPin className="w-5 h-5 text-accent shrink-0" />
                     <span>London, United Kingdom</span>
                   </div>
                 </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-4">Connect</h3>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-muted hover:text-accent transition-colors"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                  <span>Follow us on LinkedIn</span>
-                </a>
               </div>
 
               <div className="p-6 rounded-xl border border-accent/20 bg-accent/5">

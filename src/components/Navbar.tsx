@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Logo from "./Logo";
 
 const links = [
   { label: "About", href: "#about" },
@@ -35,9 +36,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center text-sm font-bold text-background">
-            FA
-          </div>
+          <Logo size={36} />
           <span className="font-semibold text-lg tracking-tight hidden sm:block">
             Flintstone Associates
           </span>

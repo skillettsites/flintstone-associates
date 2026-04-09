@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import Logo from "./Logo";
 
 const links = [
   { label: "About", href: "#about" },
@@ -16,9 +16,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center text-xs font-bold text-background">
-                FA
-              </div>
+              <Logo size={32} />
               <span className="font-semibold tracking-tight">
                 Flintstone Associates
               </span>
@@ -40,15 +38,6 @@ export default function Footer() {
             ))}
           </div>
 
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted hover:text-accent transition-colors"
-            aria-label="LinkedIn"
-          >
-            <ExternalLink className="w-5 h-5" />
-          </a>
         </div>
 
         <div className="mt-8 pt-8 border-t border-card-border text-center">
