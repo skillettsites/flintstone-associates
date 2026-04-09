@@ -1,17 +1,39 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, ExternalLink, Loader2 } from "lucide-react";
 import BlurFade from "./BlurFade";
 import SectionHeading from "./SectionHeading";
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/contact@flintstoneassociates.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(Object.fromEntries(formData)),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   return (
@@ -26,6 +48,8 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-12">
           <BlurFade delay={0.1}>
             <form onSubmit={handleSubmit} className="space-y-5">
+              <input type="hidden" name="_subject" value="New enquiry from flintstoneassociates.com" />
+              <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} />
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -33,6 +57,7 @@ export default function Contact() {
                   </label>
                   <input
                     id="name"
+                    name="name"
                     type="text"
                     required
                     className="w-full px-4 py-3 rounded-lg border border-card-border bg-card text-foreground placeholder:text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
@@ -45,6 +70,7 @@ export default function Contact() {
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
                     required
                     className="w-full px-4 py-3 rounded-lg border border-card-border bg-card text-foreground placeholder:text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
@@ -59,6 +85,7 @@ export default function Contact() {
                   </label>
                   <input
                     id="phone"
+                    name="phone"
                     type="tel"
                     className="w-full px-4 py-3 rounded-lg border border-card-border bg-card text-foreground placeholder:text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                     placeholder="+44 7000 000000"
@@ -70,6 +97,7 @@ export default function Contact() {
                   </label>
                   <input
                     id="company"
+                    name="company"
                     type="text"
                     className="w-full px-4 py-3 rounded-lg border border-card-border bg-card text-foreground placeholder:text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                     placeholder="Your company"
@@ -82,6 +110,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={5}
                   required
                   className="w-full px-4 py-3 rounded-lg border border-card-border bg-card text-foreground placeholder:text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
@@ -90,9 +119,14 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="gradient-bg text-background font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-opacity active:scale-95 w-full sm:w-auto"
+                disabled={status === "sending"}
+                className="gradient-bg text-background font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-opacity active:scale-95 w-full sm:w-auto disabled:opacity-70"
               >
-                {submitted ? "Message Sent!" : "Send Message"}
+                {status === "sending" && <Loader2 className="w-4 h-4 inline mr-2 animate-spin" />}
+                {status === "idle" && "Send Message"}
+                {status === "sending" && "Sending..."}
+                {status === "sent" && "Message Sent!"}
+                {status === "error" && "Something went wrong. Try again."}
               </button>
             </form>
           </BlurFade>
@@ -103,11 +137,11 @@ export default function Contact() {
                 <h3 className="text-lg font-semibold mb-4">Contact Details</h3>
                 <div className="space-y-4">
                   <a
-                    href="mailto:hello@flintstoneassociates.com"
+                    href="mailto:contact@flintstoneassociates.com"
                     className="flex items-center gap-3 text-muted hover:text-accent transition-colors"
                   >
                     <Mail className="w-5 h-5 text-accent shrink-0" />
-                    <span>hello@flintstoneassociates.com</span>
+                    <span>contact@flintstoneassociates.com</span>
                   </a>
                   <a
                     href="tel:+442012345678"
